@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bua3x13wbp5cy"]
+
+[ext_resource type="PackedScene" uid="uid://ct7j2husbka7j" path="res://assets/buildings/streetlight.gltf" id="1_hr1bg"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="streetlight2" parent="." instance=ExtResource("1_hr1bg")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="streetlight2"]
+process_mode = 3
+transform = Transform3D(0.937756, -1.51808e-08, 0.347296, -0.347296, -4.09906e-08, 0.937756, -1.56467e-15, -1, -4.37114e-08, -0.159449, 0.971374, 0)
+light_color = Color(1, 0.831373, 0, 1)
+light_energy = 3.0
+shadow_enabled = true
+spot_range = 3.74169
+spot_angle = 53.4375

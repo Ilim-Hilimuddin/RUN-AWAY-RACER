@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctpeer0kvejsy"]
+
+[ext_resource type="Script" uid="uid://c2371yqlm6whj" path="res://scripts/level.gd" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://2x8c3jtsck7q" path="res://scenes/city/city1.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://cn1ul7tforn50" path="res://scenes/city/city_2.tscn" id="3_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://x8ydjx7mxkdq" path="res://scenes/car/car.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://dtfmxerjhagtx" path="res://scenes/city/citi_3.tscn" id="4_ppgk2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+energy_multiplier = 0.2
+
+[sub_resource type="Sky" id="Sky_u4egp"]
+sky_material = SubResource("ProceduralSkyMaterial_w7c3h")
+
+[sub_resource type="Environment" id="Environment_w8frs"]
+background_mode = 2
+sky = SubResource("Sky_u4egp")
+tonemap_mode = 2
+glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(1, 1, 1, 1)
+fog_sun_scatter = 1.0
+fog_density = 1.0
+fog_sky_affect = 0.136
+volumetric_fog_density = 0.0605
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w8frs")
+
+[node name="Level" type="Node3D" parent="."]
+script = ExtResource("1_2q6dc")
+cities = Array[PackedScene]([ExtResource("2_w7c3h"), ExtResource("3_mx8sn"), ExtResource("4_ppgk2")])
+
+[node name="Car" parent="." instance=ExtResource("3_w8frs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)

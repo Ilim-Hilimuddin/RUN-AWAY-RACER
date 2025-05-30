@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://blculopm8tsb0"]
+
+[ext_resource type="PackedScene" uid="uid://b3x5jgrr2dwcw" path="res://assets/buildings/road_straight_crossing.gltf" id="1_g30ai"]
+
+[node name="road_straight_crossing2" instance=ExtResource("1_g30ai")]
+
+[node name="road_straight_crossing" parent="." index="0"]
+gi_mode = 2
