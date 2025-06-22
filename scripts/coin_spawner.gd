@@ -28,11 +28,7 @@ func _process(delta: float) -> void:
 func spawn_coin(spawn_z: float) -> void:
 	var coin_instance = coin_scene.instantiate()
 	
-	# Pilih jalur secara acak
 	var lane_x = lanes[randi() % lanes.size()]
 	
-	# Set posisi koin di jalur terpilih dan posisi z spawn
-	# Sesuaikan y agar koin berada di atas lintasan (misal 0.5)
 	coin_instance.global_position = Vector3(lane_x, 0.5, spawn_z)
-	print("coin added")
 	add_child(coin_instance)

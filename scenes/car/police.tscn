@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b08mm6xnoou4p"]
+[gd_scene load_steps=6 format=3 uid="uid://b08mm6xnoou4p"]
 
+[ext_resource type="Script" uid="uid://c4bktn5sy2xo5" path="res://scripts/car_detection.gd" id="1_ewplq"]
 [ext_resource type="PackedScene" uid="uid://lu67k0b6k4n5" path="res://assets/buildings/car_police.gltf" id="1_g02v4"]
 [ext_resource type="Script" uid="uid://cfuoqdumtycuv" path="res://scripts/car_police.gd" id="2_qhihl"]
 [ext_resource type="AudioStream" uid="uid://bebxnaniuva3j" path="res://assets/sounds/police.wav" id="3_qhihl"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_efy7l"]
+size = Vector3(0.460449, 0.299316, 1)
+
+[node name="Police" type="Node3D"]
 
 [node name="car_police2" parent="." instance=ExtResource("1_g02v4")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
@@ -41,3 +45,10 @@ volume_db = -1.0
 max_db = 1.0
 autoplay = true
 max_distance = 10.0
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+script = ExtResource("1_ewplq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00415039, 0.131592, 0)
+shape = SubResource("BoxShape3D_efy7l")

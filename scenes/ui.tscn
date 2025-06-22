@@ -1,0 +1,482 @@
+[gd_scene load_steps=12 format=3 uid="uid://jlnhvqoglw6j"]
+
+[ext_resource type="Texture2D" uid="uid://dri212sn74rl7" path="res://assets/GUI/Icons/Icon_Small_HeartFull.png" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://dkcphlmfw5gci" path="res://scripts/ui.gd" id="1_wm3ai"]
+[ext_resource type="FontFile" uid="uid://1pkpgccsudfv" path="res://assets/GUI/Font/Orbitron-VariableFont_wght.ttf" id="1_x4jx1"]
+[ext_resource type="Texture2D" uid="uid://b373yfykfu34x" path="res://assets/GUI/Icons/Icon_Small_Coin.png" id="2_yev5y"]
+[ext_resource type="Texture2D" uid="uid://bo566pctbfvxg" path="res://assets/GUI/Icons/Icon_Small_Blank_Pause.png" id="3_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://cddc2klhgogv4" path="res://assets/GUI/Icons/Icon_Large_Star.png" id="5_ktti3"]
+[ext_resource type="Texture2D" uid="uid://dh38w0u22ebnn" path="res://assets/GUI/ButtonsText/ButtonText_Small_Blue_Square.png" id="5_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://dokq7jqdjwcem" path="res://assets/GUI/ButtonsText/ButtonText_Small_Orange_Square.png" id="6_8dubc"]
+
+[sub_resource type="Animation" id="Animation_wm3ai"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(34, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_gdt2y"]
+resource_name = "rot"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(34, 32), Vector2(17, 16), Vector2(34, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dubc"]
+_data = {
+&"RESET": SubResource("Animation_wm3ai"),
+&"rot": SubResource("Animation_gdt2y")
+}
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wm3ai")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUi" type="MarginContainer" parent="CanvasLayer"]
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUi"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/separation = 300
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameUi/HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="UI1" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
+text = "           "
+
+[node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI1"]
+modulate = Color(0.333333, 0.333333, 0.333333, 0.490196)
+position = Vector2(131.5, 24)
+scale = Vector2(0.495327, 0.22807)
+texture = ExtResource("5_p7vwb")
+
+[node name="Score" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI1"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -15.5
+offset_right = 5.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI1"]
+visible = false
+layout_mode = 0
+offset_right = 257.0
+offset_bottom = 43.0
+color = Color(0, 0, 0, 0.364706)
+
+[node name="UI2" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
+text = "           "
+
+[node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI2"]
+modulate = Color(0.333333, 0.333333, 0.333333, 0.490196)
+position = Vector2(105.75, 33)
+scale = Vector2(0.397196, 0.22807)
+texture = ExtResource("5_p7vwb")
+
+[node name="coin" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -7.5
+offset_right = 151.0
+offset_bottom = 33.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 162.0
+offset_top = 17.0
+offset_right = 97.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yev5y")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI2/TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_8dubc")
+}
+autoplay = "rot"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI2"]
+visible = false
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 42.0
+color = Color(0, 0, 0, 0.364706)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="UI3" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
+text = "           "
+
+[node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
+modulate = Color(0.333333, 0.333333, 0.333333, 0.490196)
+position = Vector2(132, 31)
+scale = Vector2(0.497196, 0.289474)
+texture = ExtResource("5_p7vwb")
+
+[node name="HighScore" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -10.5
+offset_right = 109.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
+visible = false
+layout_mode = 0
+offset_right = 257.0
+offset_bottom = 43.0
+color = Color(0, 0, 0, 0.364706)
+
+[node name="IconLargeStar" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
+position = Vector2(225, 30)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_ktti3")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/GameUi/HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="Label3" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="Label" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label3"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 198.0
+offset_bottom = 37.0
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label3/Label"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 44.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="Heart1" type="TextureRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label3/Label/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_gdt2y")
+expand_mode = 2
+
+[node name="Label4" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="Label" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4"]
+layout_mode = 2
+offset_left = -24.0
+offset_top = 8.0
+offset_right = 199.0
+offset_bottom = 40.0
+horizontal_alignment = 2
+
+[node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4/Label"]
+modulate = Color(0.332881, 0.332881, 0.332881, 0.490196)
+position = Vector2(146, 16)
+scale = Vector2(0.29229, 0.267544)
+texture = ExtResource("5_p7vwb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4/Label"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -3.0
+offset_right = -78.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Heart1" type="TextureRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4/Label/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nt7q6")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4/Label/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nt7q6")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4/Label/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nt7q6")
+expand_mode = 2
+
+[node name="GameOver" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.364706)
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_top = 134.0
+offset_right = 178.0
+offset_bottom = 198.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+
+[node name="Label3" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -172.5
+offset_top = 205.0
+offset_right = 178.5
+offset_bottom = 269.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 25
+text = "HIGH  SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HigScoreLabel" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -197.0
+offset_top = 254.0
+offset_right = 203.0
+offset_bottom = 318.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.909804, 0.431373, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 40
+text = "000000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_top = 330.0
+offset_right = 178.0
+offset_bottom = 394.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 25
+text = "YOUR  SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YourScore" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_top = 385.0
+offset_right = 178.0
+offset_bottom = 449.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.909804, 0.431373, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 40
+text = "1000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -23.0
+offset_right = 193.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/GameOver/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = 60.0
+offset_right = 403.5
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.3)
+texture_normal = ExtResource("6_8dubc")
+
+[node name="Label2" type="Label" parent="CanvasLayer/GameOver/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = 16.0
+offset_right = 158.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 35
+text = "RESTART"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 122.0
+offset_top = 579.0
+offset_right = 122.0
+offset_bottom = 579.0
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/GameOver/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 65.5
+offset_top = -7.0
+offset_right = 601.5
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.3)
+texture_normal = ExtResource("6_8dubc")
+
+[node name="Label2" type="Label" parent="CanvasLayer/GameOver/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_right = 261.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 35
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1

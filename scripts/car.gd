@@ -1,44 +1,29 @@
 extends Node3D
-
-# Car movement script for Godot 4.3 (3D)
-# Implements swipe detection to move car between three lanes on the x-axis (-.8, 0.0, .8)
-# Uses ShapeCast3D for reliable ground detection on slopes
-
-# Lane positions on the x-axis
 const LANES = [-.6, 0, .6]
-
-# Speed of lane transition (units per second)
 @export var lane_transition_speed: float = 5
-
-# Speed of vertical movement towards ground (units per second)
 @export var ground_snap_speed: float = 8
-
-# Minimum swipe distance (in pixels) to register as a valid swipe
 const SWIPE_THRESHOLD = 10
-
-# Current lane index (0 = left, 1 = center, 2 = right)
 var current_lane: int = 1
-
-# Target x position for smooth movement
 var target_x: float = 1
-
-# Variables to track swipe gesture
 var swipe_start_position: Vector2
 var swipe_in_progress: bool = false
-
-# For ground detection
 var ground_shape: SphereShape3D
 var ground_cast: ShapeCast3D
 var current_ground_normal: Vector3 = Vector3.UP
+@export var blink_duration: float = 2.0
+var is_blinking = false
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@export var max_health: int = 3
+var current_health: int
 
 func _ready():
-	# Initialize car position to center lane
+	current_health = max_health
 	target_x = LANES[current_lane]
 	var pos = global_position
 	pos.x = target_x
 	global_position = pos
+	_start_blink()
 	add_to_group("player")
-
 
 	# Create ground detection shape
 	ground_cast = ShapeCast3D.new()
@@ -53,6 +38,12 @@ func _ready():
 	add_child(ground_cast)
 
 func _input(event):
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_LEFT:
+				_move_left()
+			KEY_RIGHT:
+				_move_right()
 	# Detect swipe gestures
 	if event is InputEventScreenTouch:
 		if event.pressed:
@@ -159,6 +150,38 @@ func _process(delta: float) -> void:
 	if current_lane==1:
 		pos.x = lerp(pos.x,0*delta,lane_transition_speed*delta)
 		global_position = pos
-		
+
+func _start_blink():
+	is_blinking = true
+	# Nonaktifkan collider saat blink
+	for child in get_children():
+		if child is CollisionShape3D:
+			child.disabled = true
+	# Mainkan animasi
+	anim_player.play("blink")
+	# Timer untuk mengakhiri blinking
+	await get_tree().create_timer(blink_duration).timeout
+	_end_blink()
+
+func _end_blink():
+	is_blinking = false
+	for child in get_children():
+		if child is CollisionShape3D:
+			child.disabled = false
+	anim_player.play("ready")
+	anim_player.stop()
+
+func take_damage():
+	if is_blinking:
+		return  # Jangan bisa kena damage saat blinking
 	
-	# Note: Forward movement of the track should be handled separately
+	current_health -= 1
+	print("Player terkena tabrakan! Nyawa tersisa:", current_health)
+	
+	if current_health <= 0:
+		_game_over()
+	else:
+		_start_blink()
+		
+func _game_over():
+	print("Game Over")
