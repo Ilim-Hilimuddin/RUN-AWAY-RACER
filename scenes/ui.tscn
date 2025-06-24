@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bo566pctbfvxg" path="res://assets/GUI/Icons/Icon_Small_Blank_Pause.png" id="3_gdt2y"]
 [ext_resource type="Texture2D" uid="uid://cddc2klhgogv4" path="res://assets/GUI/Icons/Icon_Large_Star.png" id="5_ktti3"]
 [ext_resource type="Texture2D" uid="uid://dh38w0u22ebnn" path="res://assets/GUI/ButtonsText/ButtonText_Small_Blue_Square.png" id="5_p7vwb"]
-[ext_resource type="Texture2D" uid="uid://dokq7jqdjwcem" path="res://assets/GUI/ButtonsText/ButtonText_Small_Orange_Square.png" id="6_8dubc"]
+[ext_resource type="Theme" uid="uid://dtqc0nm46rt34" path="res://assets/GUI/defautl2.tres" id="8_cgfq5"]
 
 [sub_resource type="Animation" id="Animation_wm3ai"]
 length = 0.001
@@ -207,7 +207,6 @@ text = "0"
 vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
-visible = false
 layout_mode = 0
 offset_right = 257.0
 offset_bottom = 43.0
@@ -390,93 +389,42 @@ text = "1000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/GameOver"]
+[node name="Retry" type="Button" parent="CanvasLayer/GameOver"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -23.0
-offset_right = 193.0
-offset_bottom = 71.0
+offset_left = -138.0
+offset_top = 115.0
+offset_right = 138.0
+offset_bottom = 197.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/GameOver/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -132.5
-offset_top = 60.0
-offset_right = 403.5
-offset_bottom = 288.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.3)
-texture_normal = ExtResource("6_8dubc")
-
-[node name="Label2" type="Label" parent="CanvasLayer/GameOver/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -148.0
-offset_top = 16.0
-offset_right = 158.0
-offset_bottom = 168.0
-grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("8_cgfq5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_x4jx1")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 text = "RESTART"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="CanvasLayer/GameOver"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 122.0
-offset_top = 579.0
-offset_right = 122.0
-offset_bottom = 579.0
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/GameOver/Control2"]
+[node name="Exit" type="Button" parent="CanvasLayer/GameOver"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 65.5
-offset_top = -7.0
-offset_right = 601.5
-offset_bottom = 221.0
+offset_left = -138.0
+offset_top = 216.0
+offset_right = 138.0
+offset_bottom = 298.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.3)
-texture_normal = ExtResource("6_8dubc")
-
-[node name="Label2" type="Label" parent="CanvasLayer/GameOver/Control2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 138.0
-offset_right = 261.0
-offset_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("8_cgfq5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_x4jx1")
-theme_override_font_sizes/font_size = 35
-text = "EXIT"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 30
+text = "MAIN MENU"
