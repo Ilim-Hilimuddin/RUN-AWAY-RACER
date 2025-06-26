@@ -42,7 +42,9 @@ func _process(delta):
 	update_hearts(live)
 
 	if live == 0:
-		get_tree().paused = true
+		var game_over_sound = $GameOverSound
+		if game_over_sound:
+			game_over_sound.play()
 		game_over.visible = true
 		game_ui.visible = false
 		game_manager.save_highscore(sc)
@@ -60,4 +62,4 @@ func _on_retry_pressed():
 		get_tree().reload_current_scene()
 
 func _on_exit_pressed():
-	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

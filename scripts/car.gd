@@ -147,9 +147,6 @@ func _process(delta: float) -> void:
 		pos.x = lerp(pos.x, target_x, lane_transition_speed * delta / max(abs(target_x - pos.x), 0))
 		global_position = pos
 	
-	if current_lane==1:
-		pos.x = lerp(pos.x,0*delta,lane_transition_speed*delta)
-		global_position = pos
 
 func _start_blink():
 	is_blinking = true
@@ -174,14 +171,26 @@ func _end_blink():
 func take_damage():
 	if is_blinking:
 		return  # Jangan bisa kena damage saat blinking
-	
+
 	current_health -= 1
 	print("Player terkena tabrakan! Nyawa tersisa:", current_health)
-	
 	if current_health <= 0:
+		var sound_duration = 0.5
+		await get_tree().create_timer(sound_duration).timeout
+		get_tree().paused = true
 		_game_over()
 	else:
 		_start_blink()
 		
+func get_coin():
+	print("Koin diambil oleh Player!")
+	if is_blinking:return
+	var game_manager = get_node("/root/Main/GameManager")
+	if game_manager:
+		game_manager.add_coin(1)
+	var coin_sound = $Sounds/CoinSound
+	if coin_sound:
+		coin_sound.play()
+
 func _game_over():
 	print("Game Over")

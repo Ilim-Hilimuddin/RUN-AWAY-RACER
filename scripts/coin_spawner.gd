@@ -18,12 +18,11 @@ func _process(delta: float) -> void:
 		return
 	
 	var player_z = player_node.global_position.z
-	
-	# Spawn koin jika sudah melewati jarak interval spawn dari spawn terakhir
+
+	# Spawn koin hanya jika pemain melewati interval spawn
 	if player_z < last_spawn_z - spawn_interval_z:
 		spawn_coin(player_z - spawn_interval_z)
 		last_spawn_z -= spawn_interval_z
-	spawn_coin(player_z-spawn_interval_z)
 
 func spawn_coin(spawn_z: float) -> void:
 	var coin_instance = coin_scene.instantiate()

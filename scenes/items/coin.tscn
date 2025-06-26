@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdsgtxklrbl37"]
+[gd_scene load_steps=8 format=3 uid="uid://bdsgtxklrbl37"]
 
 [ext_resource type="PackedScene" uid="uid://h3vfrj832edm" path="res://assets/items/Coin.glb" id="1_fgdtj"]
 [ext_resource type="Script" uid="uid://cs3qm436yueow" path="res://scripts/coin.gd" id="2_byeky"]
+[ext_resource type="AudioStream" uid="uid://dpqkgu5ca52td" path="res://assets/sounds/coin-pickup.wav" id="3_t11da"]
 
 [sub_resource type="Animation" id="Animation_byeky"]
 length = 0.001
@@ -61,3 +62,6 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CoinDetection" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.00644019, 0.999979, 0, -0.999979, 0.00644019, 0, 0.00360924, -0.00178524)
 shape = SubResource("CylinderShape3D_byeky")
+
+[node name="CoinSound" type="AudioStreamPlayer3D" parent="CoinDetection" index="1"]
+stream = ExtResource("3_t11da")
