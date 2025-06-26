@@ -47,3 +47,9 @@ func load_highscore():
 		return score
 	else:
 		return 0  # default jika belum ada data
+
+func reset_game():
+	score = 0
+	coin = 0
+	SPEED = 5.0
+	time_passed = 0.0

@@ -20,6 +20,7 @@ offset_bottom = 40.0
 script = ExtResource("1_3vq02")
 
 [node name="Background" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 801.0
 

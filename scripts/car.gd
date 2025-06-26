@@ -190,7 +190,7 @@ func _end_blink():
 
 func take_damage():
 	if is_blinking:
-		return  # Jangan bisa kena damage saat blinking
+		return  "blink" # Jangan bisa kena damage saat blinking
 
 	current_health -= 1
 	print("Player terkena tabrakan! Nyawa tersisa:", current_health)
