@@ -29,12 +29,12 @@ func spawn_coins():
 
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	coin_count = rng.randi_range(5, 8)  # jumlah koin random antara 3 dan 5
+	coin_count = rng.randi_range(3, 5)  # jumlah koin random antara 3 dan 5
 	var sp = Coinspawner[rng.randi_range(0, Coinspawner.size() - 1)]
 	
 	for i in range(coin_count):
 		var coin_instance = coin_scene.instantiate()
 		var spawn_position = sp.transform.origin
-		spawn_position.z += i * .3
+		spawn_position.z += i * 0.4
 		coin_instance.transform.origin = spawn_position
 		add_child(coin_instance)

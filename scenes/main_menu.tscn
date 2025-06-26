@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2i2to7bs7sr2"]
+
+[ext_resource type="Texture2D" uid="uid://5sacm1iiq1vd" path="res://assets/GUI/mainmenu-bg.jpeg" id="1_bqqt6"]
+[ext_resource type="FontFile" uid="uid://1pkpgccsudfv" path="res://assets/GUI/Font/Orbitron-VariableFont_wght.ttf" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://du3hfj6uq7753" path="res://main_menu.gd" id="1_wu84c"]
+[ext_resource type="Theme" uid="uid://dtqc0nm46rt34" path="res://assets/GUI/defautl2.tres" id="2_bqqt6"]
+[ext_resource type="AudioStream" uid="uid://3ybimq106dap" path="res://assets/sounds/game-background.mp3" id="5_8ln24"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wu84c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 638.0
+offset_bottom = 790.0
+color = Color(1, 1, 1, 0.67451)
+
+[node name="image" type="Sprite2D" parent="CanvasLayer/Control/Background"]
+position = Vector2(321.25, 401.75)
+scale = Vector2(0.835286, 1.04232)
+texture = ExtResource("1_bqqt6")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 149.0
+offset_right = 578.0
+offset_bottom = 219.0
+theme_override_colors/font_color = Color(0.380392, 0.862745, 1, 0.741176)
+theme_override_fonts/font = ExtResource("1_ekxnf")
+theme_override_font_sizes/font_size = 55
+text = "Run Away Racer"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 282.0
+offset_right = 424.0
+offset_bottom = 327.0
+theme_override_colors/font_color = Color(0.380392, 0.862745, 1, 0.741176)
+theme_override_fonts/font = ExtResource("1_ekxnf")
+theme_override_font_sizes/font_size = 35
+text = "Main Menu"
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 2
+offset_left = 211.0
+offset_top = 360.0
+offset_right = 422.0
+offset_bottom = 406.0
+theme = ExtResource("2_bqqt6")
+theme_override_fonts/font = ExtResource("1_ekxnf")
+theme_override_font_sizes/font_size = 30
+text = "Start"
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 2
+offset_left = 216.0
+offset_top = 444.0
+offset_right = 427.0
+offset_bottom = 490.0
+theme = ExtResource("2_bqqt6")
+theme_override_fonts/font = ExtResource("1_ekxnf")
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 2
+offset_left = 217.0
+offset_top = 521.0
+offset_right = 428.0
+offset_bottom = 567.0
+theme = ExtResource("2_bqqt6")
+theme_override_fonts/font = ExtResource("1_ekxnf")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="GameBackground2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8ln24")
+autoplay = true

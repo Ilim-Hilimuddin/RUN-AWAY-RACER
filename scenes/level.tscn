@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctpeer0kvejsy"]
+[gd_scene load_steps=12 format=3 uid="uid://ctpeer0kvejsy"]
 
 [ext_resource type="Script" uid="uid://c2371yqlm6whj" path="res://scripts/level.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://jlnhvqoglw6j" path="res://scenes/ui.tscn" id="1_klq6b"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://x8ydjx7mxkdq" path="res://scenes/car/car.tscn" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://dtfmxerjhagtx" path="res://scenes/city/citi_3.tscn" id="4_ppgk2"]
 [ext_resource type="Script" uid="uid://dc6t3d4ceucfn" path="res://scenes/game_manager.gd" id="6_2r41h"]
+[ext_resource type="AudioStream" uid="uid://kibkgprn7vmm" path="res://assets/sounds/backsound.wav" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -48,3 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4)
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("6_2r41h")
+
+[node name="Backsound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_b121j")
+autoplay = true

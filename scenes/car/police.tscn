@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b08mm6xnoou4p"]
+[gd_scene load_steps=7 format=3 uid="uid://b08mm6xnoou4p"]
 
 [ext_resource type="Script" uid="uid://c4bktn5sy2xo5" path="res://scripts/car_detection.gd" id="1_ewplq"]
 [ext_resource type="PackedScene" uid="uid://lu67k0b6k4n5" path="res://assets/buildings/car_police.gltf" id="1_g02v4"]
 [ext_resource type="Script" uid="uid://cfuoqdumtycuv" path="res://scripts/car_police.gd" id="2_qhihl"]
 [ext_resource type="AudioStream" uid="uid://bebxnaniuva3j" path="res://assets/sounds/police.wav" id="3_qhihl"]
+[ext_resource type="AudioStream" uid="uid://ksmvi02d4pbv" path="res://assets/sounds/crash.mp3" id="5_efy7l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_efy7l"]
 size = Vector3(0.460449, 0.299316, 1)
@@ -52,3 +53,6 @@ script = ExtResource("1_ewplq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00415039, 0.131592, 0)
 shape = SubResource("BoxShape3D_efy7l")
+
+[node name="CrashSound" type="AudioStreamPlayer3D" parent="PlayerDetection"]
+stream = ExtResource("5_efy7l")

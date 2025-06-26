@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://jlnhvqoglw6j"]
+[gd_scene load_steps=13 format=3 uid="uid://jlnhvqoglw6j"]
 
 [ext_resource type="Texture2D" uid="uid://dri212sn74rl7" path="res://assets/GUI/Icons/Icon_Small_HeartFull.png" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://dkcphlmfw5gci" path="res://scripts/ui.gd" id="1_wm3ai"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cddc2klhgogv4" path="res://assets/GUI/Icons/Icon_Large_Star.png" id="5_ktti3"]
 [ext_resource type="Texture2D" uid="uid://dh38w0u22ebnn" path="res://assets/GUI/ButtonsText/ButtonText_Small_Blue_Square.png" id="5_p7vwb"]
 [ext_resource type="Theme" uid="uid://dtqc0nm46rt34" path="res://assets/GUI/defautl2.tres" id="8_cgfq5"]
+[ext_resource type="AudioStream" uid="uid://cancjxxkstxja" path="res://assets/sounds/game-over.mp3" id="9_cgfq5"]
 
 [sub_resource type="Animation" id="Animation_wm3ai"]
 length = 0.001
@@ -428,3 +429,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 30
 text = "MAIN MENU"
+
+[node name="GameOverSound" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+stream = ExtResource("9_cgfq5")
+volume_db = 80.0
