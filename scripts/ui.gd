@@ -13,6 +13,7 @@ func _ready():
 	var exit = find_child("Exit", true, false)
 	retry.pressed.connect(_on_retry_pressed)
 	exit.pressed.connect(_on_exit_pressed)
+	
 
 func _process(delta):
 	var game_manager = get_node("/root/Main/GameManager")
@@ -62,4 +63,5 @@ func _on_retry_pressed():
 		get_tree().reload_current_scene()
 
 func _on_exit_pressed():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
