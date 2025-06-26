@@ -8,6 +8,10 @@ func _process(delta):
 	
 func _on_player_detection_body_entered(body):
 	if body.is_in_group("player"):
+		var crash_sound = $CrashSound
+		if crash_sound:
+			crash_sound.play()
+			print("Crash!")
 		body.take_damage()
 		
 		var crash_sound = $CrashSound
