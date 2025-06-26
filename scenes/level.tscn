@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cn1ul7tforn50" path="res://scenes/city/city_2.tscn" id="3_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://x8ydjx7mxkdq" path="res://scenes/car/car.tscn" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://dtfmxerjhagtx" path="res://scenes/city/citi_3.tscn" id="4_ppgk2"]
-[ext_resource type="Script" uid="uid://dc6t3d4ceucfn" path="res://scenes/game_manager.gd" id="6_2r41h"]
+[ext_resource type="Script" uid="uid://dc6t3d4ceucfn" path="res://scripts/game_manager.gd" id="6_2r41h"]
 [ext_resource type="AudioStream" uid="uid://kibkgprn7vmm" path="res://assets/sounds/backsound.wav" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]

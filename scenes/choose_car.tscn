@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://c355q87xv6ny0"]
+
+[ext_resource type="Script" uid="uid://8qt40d7ntfb3" path="res://scripts/choose_car.gd" id="1_3vq02"]
+[ext_resource type="Texture2D" uid="uid://5sacm1iiq1vd" path="res://assets/GUI/mainmenu-bg.jpeg" id="1_8dg5h"]
+[ext_resource type="FontFile" uid="uid://1pkpgccsudfv" path="res://assets/GUI/Font/Orbitron-VariableFont_wght.ttf" id="1_xbxxd"]
+[ext_resource type="Texture2D" uid="uid://1qnm7flx08ky" path="res://assets/sedan.png" id="3_de8yw"]
+[ext_resource type="Theme" uid="uid://dtqc0nm46rt34" path="res://assets/GUI/defautl2.tres" id="3_rsygn"]
+[ext_resource type="Texture2D" uid="uid://d3wk8jxwq8s3j" path="res://assets/hatchback.png" id="4_3vq02"]
+[ext_resource type="AudioStream" uid="uid://dfq2kp7k33f3" path="res://assets/sounds/game-background-choose-car.mp3" id="7_crpu2"]
+
+[node name="ChooseCar" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3vq02")
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Control"]
+offset_right = 640.0
+offset_bottom = 801.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Background"]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 803.0
+texture = ExtResource("1_8dg5h")
+expand_mode = 1
+
+[node name="ChooseCarLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 118.0
+offset_right = 518.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.380392, 0.862745, 1, 0.741176)
+theme_override_fonts/font = ExtResource("1_xbxxd")
+theme_override_font_sizes/font_size = 40
+text = "Choose Your Car"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 268.0
+offset_right = 617.0
+offset_bottom = 492.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_de8yw")
+expand_mode = 1
+
+[node name="SedanButton" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xbxxd")
+text = "Sedan"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_3vq02")
+expand_mode = 1
+
+[node name="HatchbackButton" type="Button" parent="CanvasLayer/Control/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xbxxd")
+text = "Hatchback"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 537.0
+offset_right = 430.0
+offset_bottom = 583.0
+theme = ExtResource("3_rsygn")
+theme_override_fonts/font = ExtResource("1_xbxxd")
+theme_override_font_sizes/font_size = 16
+text = "Back to Main Menu"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 203.0
+offset_right = 293.0
+offset_bottom = 229.0
+theme_override_fonts/font = ExtResource("1_xbxxd")
+theme_override_font_sizes/font_size = 20
+
+[node name="GameBackground" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_crpu2")
+autoplay = true

@@ -1,5 +1,4 @@
 extends Node3D
-
 @export var cities: Array[PackedScene]=[]
 
 var amnt=10
@@ -7,12 +6,12 @@ var rnd=RandomNumberGenerator.new()
 var offset=-10
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready():	
 	for n in amnt:
 		spawnCity(n*offset)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
 func spawnCity(n):

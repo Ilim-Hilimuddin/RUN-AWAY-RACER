@@ -16,7 +16,13 @@ var is_blinking = false
 @export var max_health: int = 3
 var current_health: int
 
+@onready var cars_node: Node3D = $cars
+@onready var car_sedan: Node3D = $cars/Car1
+@onready var car_hatchback: Node3D = $cars/Car2
+
 func _ready():
+	update_car_visibility()
+	
 	current_health = max_health
 	target_x = LANES[current_lane]
 	var pos = global_position
@@ -135,10 +141,8 @@ func _process(delta: float) -> void:
 	if ground_found:
 		var current_basis = global_transform.basis
 		var target_basis = target_rotation
-		global_transform = Transform3D(
-			current_basis.slerp(target_basis, 0.1),
-			pos
-		)
+		var new_basis = current_basis.slerp(target_basis, 0.1).orthonormalized()
+		global_transform = Transform3D(new_basis, pos)
 	else:
 		global_transform = Transform3D(global_transform.basis, pos)
 	
@@ -147,7 +151,23 @@ func _process(delta: float) -> void:
 		pos.x = lerp(pos.x, target_x, lane_transition_speed * delta / max(abs(target_x - pos.x), 0))
 		global_position = pos
 	
+func update_car_visibility():
+	var gm = get_node_or_null("/root/GameManager")
+	if not gm:
+		printerr("GameManager tidak ditemukan!")
+		return
 
+	match gm.selected_car_type:
+		"Sedan":
+			car_sedan.visible = true
+			car_hatchback.visible = false
+		"Hatchback":
+			car_sedan.visible = false
+			car_hatchback.visible = true
+		_:
+			car_sedan.visible = true
+			car_hatchback.visible = false
+			
 func _start_blink():
 	is_blinking = true
 	# Nonaktifkan collider saat blink
