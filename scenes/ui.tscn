@@ -1,14 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://jlnhvqoglw6j"]
+[gd_scene load_steps=23 format=3 uid="uid://jlnhvqoglw6j"]
 
 [ext_resource type="Texture2D" uid="uid://dri212sn74rl7" path="res://assets/GUI/Icons/Icon_Small_HeartFull.png" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://dkcphlmfw5gci" path="res://scripts/ui.gd" id="1_wm3ai"]
 [ext_resource type="FontFile" uid="uid://1pkpgccsudfv" path="res://assets/GUI/Font/Orbitron-VariableFont_wght.ttf" id="1_x4jx1"]
 [ext_resource type="Texture2D" uid="uid://b373yfykfu34x" path="res://assets/GUI/Icons/Icon_Small_Coin.png" id="2_yev5y"]
-[ext_resource type="Texture2D" uid="uid://bo566pctbfvxg" path="res://assets/GUI/Icons/Icon_Small_Blank_Pause.png" id="3_gdt2y"]
 [ext_resource type="Texture2D" uid="uid://cddc2klhgogv4" path="res://assets/GUI/Icons/Icon_Large_Star.png" id="5_ktti3"]
 [ext_resource type="Texture2D" uid="uid://dh38w0u22ebnn" path="res://assets/GUI/ButtonsText/ButtonText_Small_Blue_Square.png" id="5_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://by6kphhvos6e8" path="res://assets/GUI/booster.png" id="6_7dvkv"]
+[ext_resource type="Theme" uid="uid://bgm3oqwlq0dlt" path="res://assets/GUI/default.tres" id="7_7dvkv"]
+[ext_resource type="Texture2D" uid="uid://co7y5vxk6tfaa" path="res://assets/GUI/magnet.png" id="7_vdcm2"]
+[ext_resource type="Texture2D" uid="uid://cqrjc3qoonttn" path="res://assets/GUI/hourglass.png" id="8_6rmj2"]
 [ext_resource type="Theme" uid="uid://dtqc0nm46rt34" path="res://assets/GUI/defautl2.tres" id="8_cgfq5"]
 [ext_resource type="AudioStream" uid="uid://cancjxxkstxja" path="res://assets/sounds/game-over.mp3" id="9_cgfq5"]
+[ext_resource type="Texture2D" uid="uid://bdn52ehib47br" path="res://assets/GUI/BoxesBanners/Box_Blank_Square.png" id="12_vsj0x"]
+[ext_resource type="Texture2D" uid="uid://rwhiirvqo88b" path="res://assets/GUI/Icons/Icon_Large_Audio_Blank.png" id="14_cof4p"]
+[ext_resource type="Texture2D" uid="uid://dekrcom6xawci" path="res://assets/GUI/Sliders/SlimSlider_Blue_Frame.png" id="14_f7tlh"]
+[ext_resource type="StyleBox" uid="uid://dmxchlt70l1w6" path="res://assets/GUI/grabber.tres" id="15_8k7j3"]
+[ext_resource type="Texture2D" uid="uid://wbpq5pcukjyt" path="res://assets/GUI/Icons/Icon_Large_AudioOff_Blank.png" id="15_f7tlh"]
 
 [sub_resource type="Animation" id="Animation_wm3ai"]
 length = 0.001
@@ -46,6 +54,17 @@ _data = {
 &"RESET": SubResource("Animation_wm3ai"),
 &"rot": SubResource("Animation_gdt2y")
 }
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7dvkv"]
+blend_mode = 4
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkdwc"]
+content_margin_top = 15.0
+content_margin_bottom = 20.0
+texture = ExtResource("14_f7tlh")
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -92,8 +111,8 @@ text = "           "
 
 [node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI1"]
 modulate = Color(0.333333, 0.333333, 0.333333, 0.490196)
-position = Vector2(131.5, 24)
-scale = Vector2(0.495327, 0.22807)
+position = Vector2(130.5, 24)
+scale = Vector2(0.499065, 0.22807)
 texture = ExtResource("5_p7vwb")
 
 [node name="Score" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI1"]
@@ -104,10 +123,17 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 16.0
 offset_top = -15.5
-offset_right = 5.0
+offset_right = 149.0
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.875071, 0.909804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.270907, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 32
 text = "0"
@@ -128,8 +154,8 @@ text = "           "
 
 [node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI2"]
 modulate = Color(0.333333, 0.333333, 0.333333, 0.490196)
-position = Vector2(105.75, 33)
-scale = Vector2(0.397196, 0.22807)
+position = Vector2(131.5, 33)
+scale = Vector2(0.502804, 0.22807)
 texture = ExtResource("5_p7vwb")
 
 [node name="coin" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI2"]
@@ -139,9 +165,16 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 16.0
 offset_top = -7.5
-offset_right = 151.0
+offset_right = 212.0
 offset_bottom = 33.5
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.875071, 0.909804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.270907, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 32
 text = "0"
@@ -152,9 +185,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 162.0
+offset_left = 216.0
 offset_top = 17.0
-offset_right = 97.0
+offset_right = 151.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -186,8 +219,8 @@ text = "           "
 
 [node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
 modulate = Color(0.333333, 0.333333, 0.333333, 0.490196)
-position = Vector2(132, 31)
-scale = Vector2(0.497196, 0.289474)
+position = Vector2(156, 34.5)
+scale = Vector2(0.594393, 0.320176)
 texture = ExtResource("5_p7vwb")
 
 [node name="HighScore" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
@@ -197,26 +230,105 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 18.0
-offset_top = -10.5
-offset_right = 109.0
-offset_bottom = 30.5
+offset_top = -7.5
+offset_right = 159.0
+offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.875071, 0.909804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.270907, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 32
 text = "0"
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
-layout_mode = 0
-offset_right = 257.0
-offset_bottom = 43.0
-color = Color(0, 0, 0, 0.364706)
-
 [node name="IconLargeStar" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI3"]
-position = Vector2(225, 30)
+position = Vector2(281, 33)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_ktti3")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 550
+
+[node name="UI4" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
+text = "           "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemPanel" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4/HBoxContainer"]
+position = Vector2(25, 15)
+scale = Vector2(0.1, 0.1)
+
+[node name="Panel" type="ColorRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4/HBoxContainer/ItemPanel"]
+anchors_preset = -1
+anchor_left = 106.024
+anchor_top = 5.0
+anchor_right = 106.024
+anchor_bottom = 5.0
+offset_left = -376.024
+offset_top = -265.0
+offset_right = 1853.98
+offset_bottom = 245.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.31802, 0.31802, 0.31802, 0.686275)
+
+[node name="ICON1" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4/HBoxContainer/ItemPanel/Panel"]
+visible = false
+position = Vector2(270, 250)
+texture = ExtResource("6_7dvkv")
+
+[node name="ICON2" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4/HBoxContainer/ItemPanel/Panel"]
+visible = false
+position = Vector2(270, 250)
+scale = Vector2(0.139056, 0.145557)
+texture = ExtResource("7_vdcm2")
+
+[node name="ICON3" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4/HBoxContainer/ItemPanel/Panel"]
+visible = false
+position = Vector2(270, 250)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_6rmj2")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4/HBoxContainer/ItemPanel"]
+modulate = Color(1, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_7dvkv")
+offset_left = 290.0
+offset_top = -150.0
+offset_right = 1850.0
+offset_bottom = 150.0
+max_value = 5.0
+step = 0.1
+value = 5.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer/UI4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 196.0
+offset_bottom = 30.0
+grow_vertical = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/GameUi/HBoxContainer"]
 layout_direction = 2
@@ -245,10 +357,10 @@ offset_bottom = 6.0
 grow_vertical = 2
 theme_override_constants/separation = 2
 
-[node name="Heart1" type="TextureRect" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label3/Label/HBoxContainer"]
+[node name="PauseButton" type="Button" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label3/Label/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_gdt2y")
-expand_mode = 2
+theme = ExtResource("7_7dvkv")
+text = "         "
 
 [node name="Label4" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
@@ -257,9 +369,9 @@ theme_override_font_sizes/font_size = 24
 [node name="Label" type="Label" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4"]
 layout_mode = 2
 offset_left = -24.0
-offset_top = 8.0
+offset_top = 15.0
 offset_right = 199.0
-offset_bottom = 40.0
+offset_bottom = 47.0
 horizontal_alignment = 2
 
 [node name="ButtonTextSmallBlueSquare" type="Sprite2D" parent="CanvasLayer/GameUi/HBoxContainer/VBoxContainer2/Label4/Label"]
@@ -297,6 +409,11 @@ layout_mode = 2
 texture = ExtResource("1_nt7q6")
 expand_mode = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/GameUi"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 650
+
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
 visible = false
 anchors_preset = 15
@@ -304,21 +421,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.364706)
+color = Color(0, 0, 0, 0.862745)
 
-[node name="Label" type="Label" parent="CanvasLayer/GameOver"]
+[node name="BoxBlankSquare" type="Sprite2D" parent="CanvasLayer/GameOver"]
+modulate = Color(1, 1, 1, 0.431373)
+position = Vector2(321, 396.5)
+scale = Vector2(0.355877, 0.463206)
+texture = ExtResource("12_vsj0x")
+
+[node name="Label4" type="Label" parent="CanvasLayer/GameOver"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -173.0
-offset_top = 134.0
-offset_right = 178.0
-offset_bottom = 198.0
+anchors_preset = -1
+anchor_top = 0.215
+anchor_right = 1.0
+anchor_bottom = 0.295
+offset_top = -80.0
+offset_bottom = -80.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.825041, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.47145, 0.0215643, 1)
+theme_override_constants/line_spacing = 20
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 11
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 50
-text = "GAME OVER"
+text = "GAME  OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="CanvasLayer/GameOver"]
 layout_mode = 1
@@ -326,13 +459,43 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -172.5
-offset_top = 205.0
+offset_top = 207.0
 offset_right = 178.5
-offset_bottom = 269.0
+offset_bottom = 271.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.996078, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 7
 theme_override_fonts/font = ExtResource("1_x4jx1")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 28
 text = "HIGH  SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -172.0
+offset_top = 338.0
+offset_right = 179.0
+offset_bottom = 402.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.996078, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 28
+text = "YOUR  SCORE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -346,28 +509,16 @@ offset_top = 254.0
 offset_right = 203.0
 offset_bottom = 318.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.909804, 0.431373, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0.893894, 0.909804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 40
 text = "000000000000"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/GameOver"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -173.0
-offset_top = 330.0
-offset_right = 178.0
-offset_bottom = 394.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_x4jx1")
-theme_override_font_sizes/font_size = 25
-text = "YOUR  SCORE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -376,17 +527,21 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -173.0
+offset_left = -197.0
 offset_top = 385.0
-offset_right = 178.0
+offset_right = 203.0
 offset_bottom = 449.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.909804, 0.431373, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0.893894, 0.909804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 40
-text = "1000"
+text = "000000000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -398,10 +553,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -138.0
-offset_top = 115.0
-offset_right = 138.0
-offset_bottom = 197.0
+offset_left = -143.0
+offset_top = 109.0
+offset_right = 157.0
+offset_bottom = 194.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("8_cgfq5")
@@ -418,12 +573,220 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -138.0
-offset_top = 216.0
-offset_right = 138.0
-offset_bottom = 298.0
+offset_left = -143.0
+offset_top = 210.0
+offset_right = 157.0
+offset_bottom = 295.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("8_cgfq5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 30
+text = "MAIN MENU"
+
+[node name="PauseUI" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0.960784)
+
+[node name="BoxBlankSquare" type="Sprite2D" parent="CanvasLayer/PauseUI"]
+modulate = Color(1, 1, 1, 0.431373)
+position = Vector2(322, 390)
+scale = Vector2(0.304662, 0.365309)
+texture = ExtResource("12_vsj0x")
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.215
+anchor_right = 1.0
+anchor_bottom = 0.295
+offset_left = -1.0
+offset_top = -22.0
+offset_right = -1.0
+offset_bottom = -22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 1, 0.960026, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.2418, 0, 1, 1)
+theme_override_constants/line_spacing = 20
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 11
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 50
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumePanel" type="TextureRect" parent="CanvasLayer/PauseUI"]
+offset_left = 155.0
+offset_top = 254.0
+offset_right = 487.0
+offset_bottom = 349.0
+mouse_filter = 2
+texture = ExtResource("5_p7vwb")
+expand_mode = 1
+
+[node name="IconLargeAudioBlank" type="Sprite2D" parent="CanvasLayer/PauseUI/VolumePanel"]
+position = Vector2(39, 46)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_cof4p")
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/PauseUI/VolumePanel"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_right = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxTexture_jkdwc")
+theme_override_styles/grabber_area = ExtResource("15_8k7j3")
+theme_override_styles/grabber_area_highlight = ExtResource("15_8k7j3")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MuteToggle" type="Button" parent="CanvasLayer/PauseUI"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.284375
+anchor_top = 0.56125
+anchor_right = 0.715625
+anchor_bottom = 0.66375
+offset_left = -28.0
+offset_top = -93.0
+offset_right = -8.0
+offset_bottom = -90.0
+grow_horizontal = 2
+scale = Vector2(1.12567, 1)
+theme = ExtResource("8_cgfq5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+
+[node name="Mute" type="Control" parent="CanvasLayer/PauseUI/MuteToggle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseUI/MuteToggle/Mute"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 30
+text = "    MUTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mute" type="Sprite2D" parent="CanvasLayer/PauseUI/MuteToggle/Mute"]
+position = Vector2(68, 43)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("15_f7tlh")
+
+[node name="Unmute" type="Control" parent="CanvasLayer/PauseUI/MuteToggle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseUI/MuteToggle/Unmute"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 30
+text = "      UNMUTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="unmute" type="Sprite2D" parent="CanvasLayer/PauseUI/MuteToggle/Unmute"]
+position = Vector2(68, 43)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_cof4p")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseUI/MuteToggle/Unmute"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 297.0
+offset_bottom = 84.0
+mouse_filter = 2
+color = Color(0.133333, 0.133333, 0.133333, 0.407843)
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseUI"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.284375
+anchor_top = 0.56125
+anchor_right = 0.715625
+anchor_bottom = 0.66375
+offset_left = -28.0
+offset_top = -1.99997
+offset_right = -8.0
+offset_bottom = 1.0
+grow_horizontal = 2
+scale = Vector2(1.12567, 1)
+theme = ExtResource("8_cgfq5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 30
+text = "RESUME"
+
+[node name="Exit" type="Button" parent="CanvasLayer/PauseUI"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = 137.0
+offset_right = 130.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.12567, 1)
 theme = ExtResource("8_cgfq5")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_x4jx1")

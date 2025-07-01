@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dra7ylukc5116"]
+
+[ext_resource type="Texture2D" uid="uid://dh38w0u22ebnn" path="res://assets/GUI/ButtonsText/ButtonText_Small_Blue_Square.png" id="1_ctuxh"]
+
+[resource]
+texture = ExtResource("1_ctuxh")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2

@@ -1,6 +1,7 @@
 extends Node3D
-const LANES = [-.6, 0, .6]
-@export var lane_transition_speed: float = 5
+const LANE_DISTANCE := .5  # Jarak antar lane
+const LANES := [-1, 0, 1]   # Index posisi lane
+@export var lane_transition_speed: float = 10
 @export var ground_snap_speed: float = 8
 const SWIPE_THRESHOLD = 10
 var current_lane: int = 1
@@ -9,6 +10,8 @@ var swipe_start_position: Vector2
 var swipe_in_progress: bool = false
 var ground_shape: SphereShape3D
 var ground_cast: ShapeCast3D
+@onready var visual_node = $cars
+
 var current_ground_normal: Vector3 = Vector3.UP
 @export var blink_duration: float = 2.0
 var is_blinking = false
@@ -22,12 +25,12 @@ var current_health: int
 
 func _ready():
 	update_car_visibility()
-	
 	current_health = max_health
-	target_x = LANES[current_lane]
+	target_x = LANES[current_lane] * LANE_DISTANCE
 	var pos = global_position
 	pos.x = target_x
 	global_position = pos
+
 	_start_blink()
 	add_to_group("player")
 
@@ -35,10 +38,10 @@ func _ready():
 	ground_cast = ShapeCast3D.new()
 	ground_cast.name = "GroundDetection"
 	ground_cast.collision_mask = 1
-	ground_cast.target_position = Vector3(0, -2.0, 0) # Set target_position instead of cast_to
+	ground_cast.target_position = Vector3(0, -5.0, 0) # Set target_position instead of cast_to
 
 	ground_shape = SphereShape3D.new()
-	ground_shape.radius = 0.3
+	ground_shape.radius = .25
 	ground_cast.set_shape(ground_shape)
 
 	add_child(ground_cast)
@@ -80,12 +83,33 @@ func _process_swipe(start_pos: Vector2, end_pos: Vector2) -> void:
 func _move_left():
 	if current_lane > 0:
 		current_lane -= 1
-		target_x = LANES[current_lane]
-
+		
 func _move_right():
 	if current_lane < LANES.size() - 1:
 		current_lane += 1
-		target_x = LANES[current_lane]
+
+func update_lane_position(delta: float) -> void:
+	target_x = LANES[current_lane] * LANE_DISTANCE
+
+	# Pindah horizontal
+	var pos = position
+	pos.x = lerp(pos.x, target_x, lane_transition_speed * delta)
+	position = pos
+
+	# Efek belok (tilt) di sumbu Z dan rotasi di sumbu Y
+	var direction = target_x - pos.x
+
+	# Rotasi Z untuk efek miring ke samping (tilt)
+	var tilt_z = clamp(direction * 15.0, -25.0, 25.0)
+
+	# Rotasi Y untuk efek badan mobil belok ke arah tujuan
+	var tilt_y = clamp(direction * -20.0, -180.0, 90.0)
+
+	# Gabungkan rotasi ke visual node (pastikan visual_node sudah disiapkan)
+	var current_rot = visual_node.rotation_degrees
+	current_rot.z = lerp(current_rot.z, tilt_z, 6.0 * delta)
+	current_rot.y = lerp(current_rot.y, tilt_y, 6.0 * delta)
+	visual_node.rotation_degrees = current_rot
 
 func _process(delta: float) -> void:
 	# Ground detection
@@ -133,7 +157,7 @@ func _process(delta: float) -> void:
 	# Smooth movement towards target position
 	var pos = global_position
 	if pos.distance_to(target_position) > 0.1:
-		pos = pos.lerp(target_position, ground_snap_speed * delta / max(pos.distance_to(target_position), 0.001))
+		pos = pos.lerp(target_position, ground_snap_speed * delta / max(pos.distance_to(target_position), 0))
 	else:
 		pos = target_position
 	
@@ -147,10 +171,8 @@ func _process(delta: float) -> void:
 		global_transform = Transform3D(global_transform.basis, pos)
 	
 	# Horizontal movement (lane switching)
-	if abs(pos.x - target_x) > 0.1:
-		pos.x = lerp(pos.x, target_x, lane_transition_speed * delta / max(abs(target_x - pos.x), 0))
-		global_position = pos
-	
+	update_lane_position(delta)
+
 func update_car_visibility():
 	var gm = get_node_or_null("/root/GameManager")
 	if not gm:
@@ -193,24 +215,33 @@ func take_damage():
 		return  "blink" # Jangan bisa kena damage saat blinking
 
 	current_health -= 1
-	print("Player terkena tabrakan! Nyawa tersisa:", current_health)
 	if current_health <= 0:
 		var sound_duration = 0.5
 		await get_tree().create_timer(sound_duration).timeout
 		get_tree().paused = true
-		_game_over()
 	else:
 		_start_blink()
-		
+
+func get_health():
+	var se = $Sounds/Health
+	se.play()
+	current_health +=1
+	
 func get_coin():
-	print("Koin diambil oleh Player!")
 	if is_blinking:return
-	var game_manager = get_node("/root/Main/GameManager")
-	if game_manager:
-		game_manager.add_coin(1)
+	GameManager.add_coin(1)
 	var coin_sound = $Sounds/CoinSound
 	if coin_sound:
 		coin_sound.play()
 
-func _game_over():
-	print("Game Over")
+func get_magnet():
+	if is_blinking:return
+	var se = $Sounds/Magnet
+	se.play()
+	GameManager.get_magnet()
+
+func get_booster():
+	if is_blinking:return
+	var se = $Sounds/BoosterAudio
+	se.play()
+	GameManager.booster()	

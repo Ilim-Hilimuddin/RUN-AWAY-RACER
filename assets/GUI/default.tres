@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=10 format=4 uid="uid://bgm3oqwlq0dlt"]
 
-[ext_resource type="Texture2D" uid="uid://c74f6w35ametw" path="res://assets/GUI/ButtonsText/ButtonText_Blue_OnOffBackground.png" id="1_taj2o"]
+[ext_resource type="Texture2D" uid="uid://bo566pctbfvxg" path="res://assets/GUI/Icons/Icon_Small_Blank_Pause.png" id="1_taj2o"]
 
 [sub_resource type="Image" id="Image_8bido"]
 data = {
@@ -872,6 +872,11 @@ cache/0/16/0/glyphs/268435541/offset = Vector2(0, -10)
 cache/0/16/0/glyphs/268435541/size = Vector2(9, 11)
 cache/0/16/0/glyphs/268435541/uv_rect = Rect2(198, 115, 9, 11)
 cache/0/16/0/glyphs/268435541/texture_idx = 0
+cache/0/16/0/glyphs/402653187/advance = Vector2(4.15625, 16.0938)
+cache/0/16/0/glyphs/402653187/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/402653187/size = Vector2(0, 0)
+cache/0/16/0/glyphs/402653187/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/16/0/glyphs/402653187/texture_idx = -1
 cache/0/24/0/ascent = 26.0
 cache/0/24/0/descent = 8.0
 cache/0/24/0/underline_position = 2.40625
@@ -938,33 +943,19 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0nvl"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_taj2o"]
+texture = ExtResource("1_taj2o")
+region_rect = Rect2(0, 0, 104, 128)
+modulate_color = Color(0.489622, 0.489622, 0.489622, 0.615686)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ydhe6"]
 texture = ExtResource("1_taj2o")
-region_rect = Rect2(0, 0, 328, 128)
+region_rect = Rect2(0, 0, 104, 128)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3lky"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bido"]
+texture = ExtResource("1_taj2o")
+region_rect = Rect2(0, 0, 104, 128)
+modulate_color = Color(0.650128, 0.650128, 0.650128, 0.807843)
 
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -988,6 +979,6 @@ Button/font_sizes/font_size = 16
 Button/fonts/font = SubResource("FontFile_kh0js")
 Button/styles/disabled = SubResource("StyleBoxFlat_hjmjn")
 Button/styles/focus = SubResource("StyleBoxFlat_plipi")
-Button/styles/hover = SubResource("StyleBoxFlat_b0nvl")
+Button/styles/hover = SubResource("StyleBoxTexture_taj2o")
 Button/styles/normal = SubResource("StyleBoxTexture_ydhe6")
-Button/styles/pressed = SubResource("StyleBoxFlat_f3lky")
+Button/styles/pressed = SubResource("StyleBoxTexture_8bido")

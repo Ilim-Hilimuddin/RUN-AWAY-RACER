@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq7durlog4jdp"]
+
+[ext_resource type="Script" uid="uid://cn3ss1tlj5to7" path="res://scripts/booster.gd" id="1_e6guy"]
+[ext_resource type="PackedScene" uid="uid://djlae1l5gyvyu" path="res://assets/items/Gas Can (1).glb" id="2_20rk2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0un20"]
+size = Vector3(0.119995, 0.158569, 0.05896)
+
+[sub_resource type="Animation" id="Animation_7xypa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5jbjy"]
+resource_name = "rotation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kk8k"]
+_data = {
+&"RESET": SubResource("Animation_7xypa"),
+&"rotation": SubResource("Animation_5jbjy")
+}
+
+[node name="Booster" type="Node3D"]
+script = ExtResource("1_e6guy")
+
+[node name="Model" parent="." instance=ExtResource("2_20rk2")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, -0.0740539, 0)
+
+[node name="CarDetection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CarDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00323486, 0.00482178, 0.00274658)
+shape = SubResource("BoxShape3D_0un20")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4kk8k")
+}
+autoplay = "rotation"

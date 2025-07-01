@@ -9,10 +9,6 @@ var offset=-10
 func _ready():	
 	for n in amnt:
 		spawnCity(n*offset)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 	
 func spawnCity(n):
 	rnd.randomize()

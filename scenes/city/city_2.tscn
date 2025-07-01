@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cn1ul7tforn50"]
+[gd_scene load_steps=37 format=3 uid="uid://cn1ul7tforn50"]
 
 [ext_resource type="Script" uid="uid://cb3kk5dkv4ui1" path="res://scripts/move_city.gd" id="1_d1jib"]
 [ext_resource type="PackedScene" uid="uid://dxmehn13elwdf" path="res://assets/buildings/road_junction.gltf" id="1_donq6"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b3x5jgrr2dwcw" path="res://assets/buildings/road_straight_crossing.gltf" id="2_d1jib"]
 [ext_resource type="PackedScene" uid="uid://dn7u361vpd3e4" path="res://assets/buildings/road_corner_curved.gltf" id="3_4rngo"]
 [ext_resource type="PackedScene" uid="uid://cw636jy0mnite" path="res://assets/buildings/base.gltf" id="4_2h7wg"]
+[ext_resource type="PackedScene" uid="uid://b8jup55pt37qo" path="res://scenes/health.tscn" id="4_12k7i"]
 [ext_resource type="PackedScene" uid="uid://du3885oecs5lg" path="res://assets/buildings/road_straight.gltf" id="5_b4dqb"]
+[ext_resource type="PackedScene" uid="uid://dq7durlog4jdp" path="res://scenes/booster.tscn" id="6_g51yv"]
 [ext_resource type="PackedScene" uid="uid://dbytfbvuo0tfv" path="res://assets/buildings/building_A.gltf" id="6_j2meo"]
 [ext_resource type="PackedScene" uid="uid://d1671kh0mmfqr" path="res://assets/buildings/building_B.gltf" id="7_5xpre"]
 [ext_resource type="PackedScene" uid="uid://brf2bvuh70nr" path="res://assets/buildings/building_F.gltf" id="8_bt3ks"]
@@ -30,14 +32,17 @@
 [ext_resource type="PackedScene" uid="uid://bfqqnysl2sqr2" path="res://assets/hallowen/tree_pine_orange_small.gltf" id="28_1q0ea"]
 [ext_resource type="PackedScene" uid="uid://bua3x13wbp5cy" path="res://scenes/city/light.tscn" id="29_nk7l4"]
 [ext_resource type="PackedScene" uid="uid://6q30p1kcjh8m" path="res://assets/hallowen/post.gltf" id="29_rcqcf"]
+[ext_resource type="PackedScene" uid="uid://bifhl4w5pifew" path="res://scenes/barier.tscn" id="31_5sdgg"]
 [ext_resource type="PackedScene" uid="uid://x3n583fx6ytw" path="res://scenes/character/women_1.tscn" id="31_rcqcf"]
+[ext_resource type="PackedScene" uid="uid://dy2cknt0uvyvc" path="res://scenes/magnet.tscn" id="32_5sdgg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_donq6"]
-size = Vector3(9, 1, 1)
+size = Vector3(9, 3.82788, 1.041)
 
 [node name="City2" type="Node3D"]
 script = ExtResource("1_d1jib")
 coin_scene = ExtResource("2_1q0ea")
+col_item = Array[PackedScene]([ExtResource("31_5sdgg"), ExtResource("4_12k7i"), ExtResource("32_5sdgg"), ExtResource("31_5sdgg"), ExtResource("32_5sdgg"), ExtResource("6_g51yv"), ExtResource("6_g51yv")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -161,8 +166,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0.0197051, 0)
+transform = Transform3D(2, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, -0.121689, -0.000839233)
 shape = SubResource("BoxShape3D_donq6")
+
+[node name="Colpos1" type="Marker3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.25, 0)
+
+[node name="Colpos2" type="Marker3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00327137, 0.25, 0)
+
+[node name="Colpos3" type="Marker3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 0)
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -179,7 +193,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -4)
 
 [node name="car_police2" parent="Node3D" instance=ExtResource("16_2h7wg")]
-transform = Transform3D(0.654129, 0, -0.3669, 0, 0.75, 0, 0.3669, 0, 0.654129, 2.36836, 0.145046, -0.72569)
+transform = Transform3D(0.654129, 0, -0.3669, 0, 0.75, 0, 0.3669, 0, 0.654129, 1.30613, 0.145046, -1.482)
 
 [node name="trafficlight_A2" parent="Node3D" instance=ExtResource("17_jqg4u")]
 transform = Transform3D(0.995886, 0, -0.0906152, 0, 1, 0, 0.0906152, 0, 0.995886, 0.986647, 0.0970659, 0.998163)
@@ -263,22 +277,22 @@ transform = Transform3D(-0.0572852, 0, 0.998358, 0, 1, 0, -0.998358, 0, -0.05728
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.978908, 0.0697051, -4.02679)
 
 [node name="pos1" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.3, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.3, 2.84574)
 
 [node name="pos2" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00327137, 0.3, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00327137, 0.3, 2.84574)
 
 [node name="pos3" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.3, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.3, 2.84574)
 
 [node name="pos4" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.3, -2.545)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.3, -3.44216)
 
 [node name="pos5" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00327137, 0.3, -2.54463)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00327137, 0.3, -3.44179)
 
 [node name="pos6" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.3, -2.545)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.3, -3.44216)
 
 [node name="Women" parent="." instance=ExtResource("31_rcqcf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.897955, 0.0824107, 2.12539)

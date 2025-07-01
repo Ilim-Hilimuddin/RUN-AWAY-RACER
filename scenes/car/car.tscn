@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://x8ydjx7mxkdq"]
+[gd_scene load_steps=14 format=3 uid="uid://x8ydjx7mxkdq"]
 
 [ext_resource type="Script" uid="uid://bgwrd1tf3jg3u" path="res://scripts/car.gd" id="1_yhfra"]
 [ext_resource type="PackedScene" uid="uid://bvu6tbd1hmrc8" path="res://assets/buildings/car_sedan.gltf" id="2_rytg7"]
 [ext_resource type="PackedScene" uid="uid://cx8frnrdparbw" path="res://assets/buildings/car_hatchback.gltf" id="3_rytg7"]
 [ext_resource type="AudioStream" uid="uid://cd5yppma0dko3" path="res://assets/sounds/car-engine.mp3" id="4_x7uf8"]
 [ext_resource type="AudioStream" uid="uid://dpqkgu5ca52td" path="res://assets/sounds/coin-pickup.wav" id="6_b3ski"]
+[ext_resource type="AudioStream" uid="uid://dmgjdq3vliq0n" path="res://assets/sounds/magnet.wav" id="6_u0012"]
+[ext_resource type="AudioStream" uid="uid://bmyed5lb8as6h" path="res://assets/sounds/get_health.wav" id="7_s371w"]
+[ext_resource type="AudioStream" uid="uid://b14iy8h0hp7lo" path="res://assets/sounds/booster.wav" id="8_s371w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x7uf8"]
 size = Vector3(0.318298, 0.431198, 0.690186)
@@ -168,7 +171,7 @@ transform = Transform3D(0.666667, 0, 4.2382e-08, 0, 0.666667, 0, -4.2382e-08, 0,
 shape = SubResource("BoxShape3D_x7uf8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996075, 0.0885119, 0, -0.0885119, 0.996075, 0, 0.640436, 1.12676)
+transform = Transform3D(1, 0, 0, 0, 0.996075, 0.0885119, 0, -0.0885119, 0.996075, 0, 0.475176, 0.911058)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -180,7 +183,22 @@ autoplay = "ready"
 
 [node name="CarEngineSound" type="AudioStreamPlayer3D" parent="Sounds"]
 stream = ExtResource("4_x7uf8")
+volume_db = 80.0
+unit_size = 24.57
+max_db = 6.0
 autoplay = true
 
 [node name="CoinSound" type="AudioStreamPlayer3D" parent="Sounds"]
 stream = ExtResource("6_b3ski")
+
+[node name="Magnet" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("6_u0012")
+volume_db = 80.0
+
+[node name="Health" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("7_s371w")
+volume_db = 80.0
+max_db = 6.0
+
+[node name="BoosterAudio" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = ExtResource("8_s371w")

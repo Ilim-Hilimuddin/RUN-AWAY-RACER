@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dgd7yx100mjbb"]
+
+[ext_resource type="Texture2D" uid="uid://bo566pctbfvxg" path="res://assets/GUI/Icons/Icon_Small_Blank_Pause.png" id="1_frral"]
+
+[resource]
+texture = ExtResource("1_frral")
+region_rect = Rect2(0, 0, 104, 128)
+modulate_color = Color(0.197937, 0.197937, 0.197937, 0.807843)

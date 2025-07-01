@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bifhl4w5pifew"]
+
+[ext_resource type="PackedScene" uid="uid://dcctshf0vf5jy" path="res://assets/items/Traffic Barrier.glb" id="1_d7bil"]
+[ext_resource type="Script" uid="uid://c4bktn5sy2xo5" path="res://scripts/car_detection.gd" id="2_bo7tl"]
+[ext_resource type="AudioStream" uid="uid://ksmvi02d4pbv" path="res://assets/sounds/crash.mp3" id="3_bo7tl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gpu1o"]
+size = Vector3(0.265137, 0.20874, 0.184814)
+
+[node name="Barier" type="Node3D"]
+
+[node name="Traffic Barrier" parent="." instance=ExtResource("1_d7bil")]
+transform = Transform3D(0.0293502, 0, 0, 0, 0.0293502, 0, 0, 0, 0.0293502, 0, -0.0490336, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0490336, 0)
+script = ExtResource("2_bo7tl")
+
+[node name="CrashSound" type="AudioStreamPlayer3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0490336, 0)
+stream = ExtResource("3_bo7tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00170898, -0.00817871, 0.00109863)
+shape = SubResource("BoxShape3D_gpu1o")
